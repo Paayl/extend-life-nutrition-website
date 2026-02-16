@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extend Burn</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#111;
+  --card:#f7f8f2;
+  --accent:#D6DE23;
+}
+body.dark{
+  --bg:#0b0b0b;
+  --text:#e6e6e6;
+  --card:#121212;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER */
+header{
+  background:var(--accent);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.site-logo{height:64px}
+nav{display:flex;gap:16px;align-items:center}
+nav a{text-decoration:none;color:#000;font-weight:700}
+.toggle{
+  border:2px solid #000;
+  background:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+  max-width:1000px;
+  margin:12px auto;
+  padding:0 20px;
+  font-size:14px;
+}
+.breadcrumb a{text-decoration:none;color:var(--accent)}
+
+/* PRODUCT */
+.product{
+  max-width:1000px;
+  margin:30px auto;
+  padding:20px;
+}
+
+/* SLIDER */
+.slider{
+  max-width:420px;
+  margin:auto;
+  overflow:hidden;
+}
+.slides{display:flex;transition:.4s}
+.slide{min-width:100%}
+.slide img{
+  width:100%;
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+}
+
+/* INFO */
+h1{margin-top:24px;font-size:34px}
+.short{margin:8px 0;font-size:18px}
+.price{color:var(--accent);font-size:22px;font-weight:700}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin:20px 0;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 20px;
+  background:var(--accent);
+  color:#000;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.outline{
+  background:none;
+  border:2px solid var(--accent);
+  color:var(--accent);
+}
+
+/* ABOUT */
+.about-product{
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+  margin:30px 0;
+}
+.about-product h2{margin-bottom:10px}
+
+/* TABS */
+.product-tabs{
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+}
+.tab-buttons{
+  display:flex;
+  border-bottom:2px solid var(--accent);
+  margin-bottom:16px;
+}
+.tab-btn{
+  flex:1;
+  padding:12px;
+  border:none;
+  background:none;
+  font-weight:700;
+  cursor:pointer;
+}
+.tab-btn.active{
+  color:var(--accent);
+  border-bottom:4px solid var(--accent);
+}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.icon-list{list-style:none}
+.icon-list li{margin-bottom:8px}
+
+/* FOOTER */
+/* FOOTER – BOTTLE CAP */
+footer{
+  background:var(--accent);
+  color:#000;
+  padding:40px 20px;
+  text-align:center;
+}.address{
+  margin:20px auto;
+  max-width:420px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.address strong{
+  font-size:16px;
+}
+
+.contact-details{
+  margin:14px auto 22px;
+  text-align:center;
+  font-size:15px;
+}
+
+.contact-details p{
+  margin:6px 0;
+}
+
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.contact-details i{
+  margin-right:8px;
+}
+.social{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.social a{
+  background:#000;
+  color:var(--accent);
+  padding:10px 16px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  h1{font-size:26px}
+  .actions{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img id="logo" src="image/logo.png" class="site-logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="about.html">About Us</a>
+    <button class="toggle" id="mode">🌙</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> ›
+  <a href="index.html#products">Products</a> ›
+  <strong>Extend Vita</strong>
+</div>
+
+<section class="product">
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="image/5.jpg"></div>
+      <div class="slide"><img src="image/5(2).jpeg"></div>
+      <div class="slide"><img src="image/vitaboost.jpeg"></div>
+      <div class="slide"><img src="image/vita-boost.png"></div>
+    </div>
+  </div>
+
+  <h1>Extend vita boost</h1>
+  <p class="short">Advanced fat burner & metabolism booster</p>
+  <div class="price">Rs-1350</div>
+
+  <div class="actions">
+    <a class="btn"href="https://wa.me/918595135151?text=Hello i would like to order vita boost">Buy Now</a>
+    <a class="btn outline"
+       href="https://wa.me/918595135151?text=Hello i would like to know about vita boost"
+       target="_blank">
+       <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-product">
+    <h2>About This Product</h2>
+    <p>
+      <strong>Extend vita boost</strong> generally means a vitamin/mineral supplement formulated to support health — whether for humans .
+    </p>
+    <p>
+      It Supports healthy red blood cell production and oxygen transport.
+    </p>
+  </div>
+
+  <!-- TABS -->
+  <div class="product-tabs">
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="openTab('benefits')">Benefits</button>
+      <button class="tab-btn" onclick="openTab('ingredients')">Ingredients</button>
+      <button class="tab-btn" onclick="openTab('usage')">Usage</button>
+    </div>
+
+    <div id="benefits" class="tab-content active">
+      <ul class="icon-list">
+        <li>🔋 1. Boosts Energy Levels</li>
+        <li>🛡️ 2. Strengthens Immunity</li>
+        <li>👩‍🦰 3. Improves Hair, Skin & Nails</li>
+        <li>🦴 4. Supports Bone & Joint Health</li>
+        <li>👀 5. Protects Eyes from Screen Strain</li>
+        <li>🧠 6. Enhances Brain & Nerve Function</li>
+        <li>🩸 7. Helps in Healthy Blood Formation</li>
+        <li>🧪 8. Strong Antioxidant Protection</li>
+      </ul>
+    </div>
+
+    <div id="ingredients" class="tab-content">
+      <ul class="icon-list">
+        <li>🦴 Calcium</li>
+        <li>🌀 Magnesium</li>
+        <li>⚕️ Zinc</li>
+        <li>🔥 Selenium</li>
+        <li>🩺 Copper</li>
+        <li>🌱 Manganese</li>
+        <li>💎 Molybdenum</li>
+        <li>💧 Iodine</li>
+        <li>🟡 Boron</li>
+        <li>Vitamins 👁️A,⚡B1,B,B3,B5,B6,🧠B12,🍊C,🌞D3,🛡️E,❤️K2-7</li>
+        <li>💇‍♀️ Biotin</li>
+        <li>🩸 Folate (5-MTHF)</li>
+        <li>🧠 Choline</li>
+        <li>👀 Lutein & Zeaxanthin</li>
+      </ul>
+    </div>
+
+    <div id="usage" class="tab-content">
+      <ul class="icon-list">
+        <li>💊 Take 2 capsules daily after meals</li>
+        <li>🏃 Combine with exercise for best results</li>
+        <li>🚫 Not for medicinal use</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+ <!-- REVIEWS -->
+    <h3 style="margin-top:20px;">Customer Reviews</h3>
+
+    <div class="review">
+      <strong>
+        ⭐⭐⭐⭐⭐ – Rakesh.
+        <span class="verified">✔ Verified Buyer</span>
+      </strong>
+      <p>
+        I have been using this product for two month.
+      </p>
+    </div>
+
+    <div class="review">
+      <strong>
+        ⭐⭐⭐⭐⭐ – Aman.
+        <span class="verified">✔ Verified Buyer</span>
+      </strong>
+      <p>
+        Very effective and No side effects at all.
+      </p>
+    </div>
+
+    <div class="review">
+      <strong>
+        ⭐⭐⭐⭐⭐ – Mayan.
+        <span class="verified">✔ Verified Buyer</span>
+      </strong>
+
+<footer id="contact">
+  <p>Contact us</p><br>
+    <div class="address">
+  <p><strong>Registered Address</strong></p>
+  <p>
+    Extend Life Nutrition<br>
+    <!-- Replace with real address -->
+    office no. B-3 First Floor KH no. 690 <br>
+    nai basti devli near Shubham Vatika<br>
+    south delhi New delhi,110080<br>
+    India
+  </p>
+</div>
+<div class="contact-details">
+  <p>
+    <i class="fas fa-phone"></i>
+    <a href="tel:+918595135151">+91 85951 35151</a>
+  </p>
+
+  <p>
+    <i class="fas fa-envelope"></i>
+    <a href="mailto:info@extendlifenutrition.com">
+      extendlifenutrition@gmail.com
+    </a>
+  </p>
+</div>
+</footer>
+
+<script>
+/* DARK MODE */
+const modeBtn=document.getElementById("mode");
+const body=document.body;
+
+modeBtn.onclick=()=>{
+  body.classList.toggle("dark");
+  modeBtn.textContent = body.classList.contains("dark") ? "🌞" : "🌙";
+};
+
+/* TABS */
+function openTab(id){
+  document.querySelectorAll(".tab-content")
+    .forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn")
+    .forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  event.target.classList.add("active");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extend Detox+</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ========== COLOR SYSTEM ========== */
+:root{
+  --bg:#ffffff;
+  --text:#111111;
+  --card:#f7f8f2;
+  --header:#ffffff;
+  --accent:#D6DE23;   /* bottle cap */
+}
+.site-logo{
+  height: 70px;
+}
+
+body.dark{
+  --bg:#0b0b0b;
+  --text:#e6e6e6;
+  --card:#121212;
+  --header:#000000;
+}
+
+/* ========== BASE ========== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* ========== HEADER ========== */
+header{
+  background:var(--header);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header img{height:42px}
+nav{display:flex;gap:16px;align-items:center}
+nav a{text-decoration:none;color:var(--text)}
+
+.toggle{
+  border:2px solid var(--accent);
+  background:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ========== HERO (TEXT ONLY) ========== */
+.hero{
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,var(--accent),var(--bg));
+}
+.hero h1{font-size:40px;margin-bottom:8px}
+.hero p{font-size:18px}
+
+/* ========== PRODUCTS ========== */
+.products{padding:40px 20px;text-align:center}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+  max-width:1000px;
+  margin:30px auto;
+}
+html {
+  scroll-behavior: smooth;
+}
+.card{
+  background:var(--card);
+  padding:22px;
+  position: relative;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition:.3s;
+}
+.card-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+
+
+.card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(0,0,0,.25);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+}
+
+
+/* ---------- DARK MODE IMAGE GLOW ---------- */
+body.dark .card:hover img{
+  animation:glowPulse 1.8s infinite ease-in-out;
+}
+
+/* ---------- FEATURED PRODUCT ---------- */
+body.dark .featured img{
+  animation:glowPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes glowPulse{
+  0%{box-shadow:0 0 10px rgba(255,255,255,0.25)}
+  50%{box-shadow:0 0 28px rgba(255,255,255,0.6)}
+  100%{box-shadow:0 0 10px rgba(255,255,255,0.25)}
+}
+
+.name{font-size:22px;font-weight:900;margin:10px 0 4px}
+.price{color:var(--accent);font-weight:700;margin-bottom:12px}
+
+.actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+}
+
+/* ========== BUTTONS ========== */
+.btn{
+  padding:7px 16px;
+  border-radius:8px;
+  background:var(--accent);
+  color:#000;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+}
+.btn.outline{
+  background:none;
+  border:2px solid var(--accent);
+  color:var(--accent);
+}
+
+/* ========== CENTER LAST PRODUCT ========== */
+.center{
+  grid-column:1/-1;
+  max-width:480px;
+  margin:auto;
+}
+
+/* ========== FOOTER ========== */
+footer{
+  background:#D6DE23;
+  color:var(--text);
+  padding:30px 20px;
+  text-align:center;
+}
+.address{
+  margin:20px auto;
+  max-width:420px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.address strong{
+  font-size:16px;
+}
+
+.contact-details{
+  margin:14px auto 22px;
+  text-align:center;
+  font-size:15px;
+}
+
+.contact-details p{
+  margin:6px 0;
+}
+
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.contact-details i{
+  margin-right:8px;
+}
+
+.social a{
+  color:var(--text);
+  margin:0 10px;
+  text-decoration:none;
+}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr}
+  .hero h1{font-size:30px}
+}
+@media(max-width:480px){
+  .actions{flex-direction:column}
+  .btn{width:100%;text-align:center}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img id="siteLogo" src="image/logo.png" class="site-logo" alt="Extend Detox+">
+
+  <nav>
+    <button class="toggle" id="mode">🌞</button>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Cleanse. Renew. Transform.</h1>
+  <p>Ayurvedic wellness by Extend Detox+</p>
+</section>
+
+<section class="products" id="products">
+  <h2>Our Products</h2>
+
+  <div class="grid">
+
+    <!-- FEATURED PRODUCT -->
+<div class="card featured">
+  <a href="detox.html" class="card-link">
+    <img src="image/1.jpg" alt="Extend Detox+">
+    <div class="name">Extend Detox+</div>
+  </a>
+
+  <div class="price">Rs 1500</div>
+
+  <div class="actions">
+    <a class="btn" href="detox.html">Know More</a>
+    <a class="btn outline"
+       href="https://wa.me/8595135151?text=I would like to know about Extend detox"
+       target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+<div class="card">
+  <a href="testo-gold.html" class="card-link">
+    <img src="image/2.jpg" alt="Extend Testo Gold">
+    <div class="name">Extend Testo Gold</div>
+  </a>
+
+  <div class="price">Rs 2200</div>
+
+  <div class="actions">
+    <a class="btn" href="testo-gold.html">Know More</a>
+    <a class="btn outline"
+       href="https://wa.me/8595135151?text=I would like to order Extend testo gold"
+       target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+<div class="card">
+  <a href="gut-health.html" class="card-link">
+    <img src="image/3.jpg" alt="Extend Gut Health">
+    <div class="name">Extend Gut Health</div>
+  </a>
+
+  <div class="price">Rs 1500</div>
+
+  <div class="actions">
+    <a class="btn" href="gut-health.html">Know More</a>
+    <a class="btn outline"
+       href="https://wa.me/8595135151?text=I would like to order Extend gut Health"
+       target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+<div class="card">
+  <a href="burn.html" class="card-link">
+    <img src="image/4.jpg" alt="Extend Burn">
+    <div class="name">Extend Burn</div>
+  </a>
+
+  <div class="price">Rs 2100</div>
+
+  <div class="actions">
+    <a class="btn" href="burn.html">Know More</a>
+    <a class="btn outline"
+       href="https://wa.me/8595135151?text=I would like to order Extend burn"
+       target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<div class="card center">
+  <a href="vita-boost.html" class="card-link">
+    <img src="image/5.jpg" alt="Extend Vita Boost">
+    <div class="name">Extend Vita Boost</div>
+  </a>
+
+  <div class="price">Rs 1350</div>
+
+  <div class="actions">
+    <a class="btn" href="vita-boost.html">Know More</a>
+    <a class="btn outline"
+       href="https://wa.me/8595135151?text=I would like to order Extend vita Boost"
+       target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+<footer id="contact">
+  <p>Contact us</p><br>
+  <div class="address">
+  <p><strong>Registered Address</strong></p>
+  <p>
+    Extend Life Nutrition<br>
+    <!-- Replace with real address -->
+    office no. B-3 First Floor KH no. 690 <br>
+    nai basti devli near Shubham Vatika<br>
+    south delhi New delhi,110080<br>
+    India
+  </p>
+</div>
+<div class="contact-details">
+  <p>
+    <i class="fas fa-phone"></i>
+    <a href="tel:+918595135151">+91 85951 35151</a>
+  </p>
+
+  <p>
+    <i class="fas fa-envelope"></i>
+    <a href="mailto:info@extendlifenutrition.com">
+      extendlifenutrition@gmail.com
+    </a>
+  </p>
+</div>
+
+  <div class="social">
+    <a href="https://m.me/YOUR_PAGE"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://instagram.com/extend_life_nutrition"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/8595135151"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+</footer>
+
+<script>
+const modeBtn = document.getElementById("mode");
+const body = document.body;
+const logo = document.getElementById("siteLogo");
+
+/* Day mode first */
+body.classList.remove("dark");
+logo.src = "image/logo.png";
+modeBtn.textContent = "🌞";
+
+modeBtn.onclick = () => {
+  body.classList.toggle("dark");
+
+  if (body.classList.contains("dark")) {
+    logo.src = "image/dark-logo.png";
+    modeBtn.textContent = "🌙";
+  } else {
+    logo.src = "image/logo.png";
+    modeBtn.textContent = "🌞";
+  }
+};
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extend Detox+</title>
+
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#111;
+  --card:#f7f8f2;
+  --accent:#D6DE23;
+}
+body.dark{
+  --bg:#0b0b0b;
+  --text:#e6e6e6;
+  --card:#121212;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER */
+header{
+  background:var(--accent);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.site-logo{height:60px}
+nav{display:flex;gap:16px;align-items:center}
+nav a{text-decoration:none;color:#000;font-weight:700}
+.toggle{
+  border:2px solid #000;
+  background:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+  max-width:1000px;
+  margin:10px auto;
+  padding:0 20px;
+  font-size:14px;
+}
+
+/* PRODUCT */
+.product{max-width:1000px;margin:30px auto;padding:20px}
+
+/* SLIDER */
+.slider{overflow:hidden;max-width:420px;margin:auto;position:relative}
+.slides{display:flex;transition:.4s}
+.slide{min-width:100%}
+.slide img{
+  width:100%;
+  background:#fff;
+  padding:14px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* DOTS */
+.dots{text-align:center;margin-top:10px}
+.dot{
+  width:10px;height:10px;
+  background:#bbb;
+  border-radius:50%;
+  display:inline-block;
+  margin:0 4px;
+}
+.dot.active{background:var(--accent)}
+
+/* INFO */
+h1{margin-top:20px;font-size:32px}
+.short{margin:6px 0;font-size:18px}
+.price{color:var(--accent);font-size:22px;font-weight:700}
+.actions{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+.btn{
+  padding:10px 20px;
+  background:var(--accent);
+  color:#000;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.outline{
+  background:none;
+  border:2px solid var(--accent);
+  color:var(--accent);
+}
+
+/* ABOUT */
+.about-product{
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+  margin:30px 0;
+}
+.about-product h2{margin-bottom:10px}
+
+/* TABS */
+.product-tabs{
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+}
+.tab-buttons{
+  display:flex;
+  border-bottom:2px solid var(--accent);
+  margin-bottom:16px;
+}
+.tab-btn{
+  flex:1;
+  padding:12px;
+  background:none;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+.tab-btn.active{
+  color:var(--accent);
+  border-bottom:4px solid var(--accent);
+}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.icon-list{list-style:none}
+.icon-list li{margin-bottom:10px}
+
+/* REVIEWS */
+.review{margin-top:14px}
+.verified{
+  margin-left:6px;
+  font-size:12px;
+  padding:2px 8px;
+  background:#e6f6ec;
+  color:#0a7d32;
+  border-radius:12px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--accent);
+  padding:30px;
+  text-align:center;
+}
+.address{
+  margin:20px auto;
+  max-width:420px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.address strong{
+  font-size:16px;
+}
+
+.contact-details{
+  margin:14px auto 22px;
+  text-align:center;
+  font-size:15px;
+}
+
+.contact-details p{
+  margin:6px 0;
+}
+
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.contact-details i{
+  margin-right:8px;
+}
+.social a{
+  background:#000;
+  color:var(--accent);
+  padding:10px 16px;
+  border-radius:30px;
+  text-decoration:none;
+  margin:6px;
+  display:inline-flex;
+  gap:8px;
+}
+
+/* LIGHTBOX */
+body.no-scroll{overflow:hidden}
+.lightbox{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.lightbox img{max-width:90%;max-height:90%}
+.lightbox .close{
+  position:absolute;top:20px;right:24px;
+  font-size:32px;color:#fff;cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="image/logo.png" class="site-logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="about.html">About Us</a>
+    <button class="toggle" id="mode">🌙</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &gt;
+  <a href="index.html#products">Products</a> &gt;
+  <span>Extend Detox+</span>
+</div>
+
+<section class="product">
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="image/1.jpg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/1(2).jpg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/detox+back.jpeg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/detox.png" onclick="openLightbox(this.src)"></div>
+    </div>
+  </div>
+  <div class="dots" id="dots"></div>
+
+  <h1>Extend Detox+</h1>
+  <p class="short">Supports digestion, immunity & gut balance</p>
+  <div class="price">Rs 1500</div>
+
+  <div class="actions">
+    <a class="btn"href="https://wa.me/918595135151?text=Hello i would like to order gut health">Buy Now</a>
+    <a class="btn outline"
+        href="https://wa.me/918595135151?text=Hello i would like to know about gut health"
+        target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-product">
+    <h2>About This Product</h2>
+    <p>
+      <strong>Extend Detox+</strong> is an advanced Ayurvedic formulation designed
+      to cleanse toxins, improve digestion, and strengthen immunity naturally.
+    </p>
+    <p>
+      It supports liver health, gut balance, and overall detoxification while
+      being gentle for daily use.
+    </p>
+  </section>
+
+  <!-- TABS -->
+  <section class="product-tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="openTab(event,'benefits')">Benefits</button>
+      <button class="tab-btn" onclick="openTab(event,'ingredients')">Ingredients</button>
+      <button class="tab-btn" onclick="openTab(event,'usage')">Usage</button>
+    </div>
+
+    <div id="benefits" class="tab-content active">
+      <ul class="icon-list">
+        <li>🌿 Detoxifies liver & body</li>
+        <li>💧 Improves digestion</li>
+        <li>🛡️ Boosts immunity</li>
+        <li>⚖️ Helps maintain gut balance</li> 
+        <li>🚽 Relieves constipation & bloating</li>
+        <li>💝 Support liver and kideny function </li>
+        <li>✨ Promotes Daily Gut Cleanliness</li>
+        <li>⚡ Boosts Metabolism & Energ</li>
+        <li>🫀 Cleanses & Protects the Liver</li>
+        <li>🪬 Protect your liver from alchole,high caffeine,fat burner pills, and poor diet,etc.  </li>
+      </ul>
+    </div>
+
+    <div id="ingredients" class="tab-content">
+      <ul class="icon-list">
+        <li>• Dandelion</li> 
+        <li>• Milk Thistle</li> 
+        <li>• Curcumin</li> 
+        <li>• Marshmallow</li> 
+        <li>• Amla</li> 
+        <li>• Guduchi</li> 
+        <li>• Manjistha</li> 
+        <li>• Ganoderma</li> 
+        <li>• Grape Seed</li>
+        <li>• Dill Seed</li>
+      </ul>
+    </div>
+
+    <div id="usage" class="tab-content">
+      <ul class="icon-list">
+        <li>💊 Take 2 capsules daily after meals</li>
+        <li>👨‍⚕️ Or as directed by physician</li>
+        <li>🚫 Not for medicinal use</li> 
+        <li>👶 Keep away from children</li>
+        <li>🌡️ Store in cool & dry place</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <h3 style="margin-top:30px">Customer Reviews</h3>
+  <div class="review">
+    ⭐⭐⭐⭐⭐ – Ramesh <span class="verified">✔ Verified Buyer</span>
+    <p>My digestion has improved significantly.</p>
+  </div>
+
+</section>
+
+<footer id="contact">
+  <p>Contact us</p><br>
+    <div class="address">
+  <p><strong>Registered Address</strong></p>
+  <p>
+    Extend Life Nutrition<br>
+    <!-- Replace with real address -->
+    office no. B-3 First Flook KH no. 690 <br>
+    nai basti devli near Shubham Vatika<br>
+    south delhi New delhi,110080<br>
+    India
+  </p>
+</div>
+<div class="contact-details">
+  <p>
+    <i class="fas fa-phone"></i>
+    <a href="tel:+918595135151">+91 85951 35151</a>
+  </p>
+
+  <p>
+    <i class="fas fa-envelope"></i>
+    <a href="mailto:info@extendlifenutrition.com">
+      extendlifenutrition@gmail.com
+    </a>
+  </p>
+</div>
+  <div class="social">
+    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://instagram.com/extend_life_nutrition"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/8595135151"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg">
+</div>
+
+<script>
+/* DARK MODE */
+const modeBtn=document.getElementById("mode");
+const body=document.body;
+modeBtn.onclick=()=>body.classList.toggle("dark");
+
+/* SLIDER */
+const slides=document.querySelectorAll(".slide");
+const dotsWrap=document.getElementById("dots");
+let idx=0;
+slides.forEach((_,i)=>{
+  const d=document.createElement("span");
+  d.className="dot"+(i===0?" active":"");
+  d.onclick=()=>go(i);
+  dotsWrap.appendChild(d);
+});
+const dots=document.querySelectorAll(".dot");
+function go(i){
+  idx=i;
+  document.getElementById("slides").style.transform=`translateX(-${i*100}%)`;
+  dots.forEach(d=>d.classList.remove("active"));
+  dots[i].classList.add("active");
+}
+setInterval(()=>go((idx+1)%slides.length),3000);
+
+/* TABS */
+function openTab(evt,id){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  evt.currentTarget.classList.add("active");
+}
+
+/* LIGHTBOX */
+function openLightbox(src){
+  document.getElementById("lightboxImg").src=src;
+  document.getElementById("lightbox").style.display="flex";
+  document.body.classList.add("no-scroll");
+}
+function closeLightbox(){
+  document.getElementById("lightbox").style.display="none";
+  document.body.classList.remove("no-scroll");
+}
+</script>
+
+</body>
+</html>

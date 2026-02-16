@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extend Gut Health</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#111;
+  --card:#f7f8f2;
+  --accent:#D6DE23; /* bottle cap */
+}
+body.dark{
+  --bg:#0b0b0b;
+  --text:#e6e6e6;
+  --card:#121212;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER */
+header{
+  background: var(--accent);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header nav a{
+  color:#000;
+  font-weight:700;
+}
+.toggle{
+  border:2px solid #000;
+  color:#000;
+}
+
+.site-logo{height:64px}
+nav{display:flex;gap:16px;align-items:center}
+nav a{text-decoration:none;color:var(--text);font-weight:600}
+.toggle{
+  border:2px solid var(--bg);
+  background:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+  max-width:1000px;
+  margin:10px auto;
+  padding:0 20px;
+  font-size:14px;
+  color:#777;
+}
+.breadcrumb a{color:var(--accent);text-decoration:none}
+body.dark .breadcrumb{color:#aaa}
+
+/* PRODUCT */
+.product{
+  max-width:1000px;
+  margin:30px auto;
+  padding:20px;
+}
+
+/* SLIDER */
+.slider{
+  overflow:hidden;
+  max-width:420px;
+  margin:auto;
+  position:relative;
+  touch-action:pan-y;
+}
+.slides{
+  display:flex;
+  transition:transform .45s cubic-bezier(.25,.8,.25,1);
+}
+.slide{min-width:100%}
+.slide img{
+  width:100%;
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  cursor:pointer;
+}
+body.dark .slide img{
+  box-shadow:0 0 25px rgba(255,255,255,.35);
+}
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:var(--accent);
+  border:none;
+  padding:6px 10px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.arrow.left{left:-14px}
+.arrow.right{right:-14px}
+
+/* DOTS */
+.dots{text-align:center;margin-top:12px}
+.dot{
+  height:10px;width:10px;margin:0 5px;
+  background:#bbb;border-radius:50%;
+  display:inline-block;cursor:pointer;
+}
+.dot.active{background:var(--accent)}
+body.dark .dot{background:#555}
+
+/* INFO */
+h1{margin-top:24px;font-size:34px}
+.short{margin:8px 0;font-size:18px}
+.price{color:var(--accent);font-size:22px;font-weight:700}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin:20px 0;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 20px;
+  background:var(--accent);
+  color:#000;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.outline{
+  background:none;
+  border:2px solid var(--accent);
+  color:var(--accent);
+}
+
+/* ABOUT & REVIEWS */
+.product-tabs{
+  max-width:900px;
+  margin:40px auto;
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+}
+
+.tab-buttons{
+  display:flex;
+  border-bottom:2px solid var(--accent);
+  margin-bottom:20px;
+}
+
+.tab-btn{
+  flex:1;
+  padding:12px;
+  background:none;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  color:var(--text);
+}
+
+.tab-btn.active{
+  border-bottom:4px solid var(--accent);
+  color:var(--accent);
+}
+
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+.icon-list{
+  list-style:none;
+  padding-left:0;
+}
+
+.icon-list li{
+  margin-bottom:10px;
+  font-size:16px;
+}
+
+.ingredient-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.ingredient-table td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+
+.warning{
+  margin-top:15px;
+  background:#fff3cd;
+  padding:12px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+/* REVIEWS */
+.review{margin-top:14px}
+.verified{
+  margin-left:6px;
+  font-size:12px;
+  padding:2px 8px;
+  background:#e6f6ec;
+  color:#0a7d32;
+  border-radius:12px;
+}
+body.dark .verified{
+  background:rgba(0,255,120,.15);
+  color:#6dff9c;
+}
+
+/* FOOTER */
+footer{
+  background:var(--accent);
+  color:#000;
+  padding:40px 20px;
+  text-align:center;
+}.address{
+  margin:20px auto;
+  max-width:420px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.address strong{
+  font-size:16px;
+}
+
+.contact-details{
+  margin:14px auto 22px;
+  text-align:center;
+  font-size:15px;
+}
+
+.contact-details p{
+  margin:6px 0;
+}
+
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.contact-details i{
+  margin-right:8px;
+}
+.social{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.social a{
+  background:#000;
+  color:var(--accent);
+  padding:10px 16px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* LIGHTBOX */
+body.no-scroll{overflow:hidden}
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  transition:.35s;
+  transform:scale(1);
+}
+.lightbox img.zoomed{transform:scale(2)}
+.lightbox .close{
+  position:absolute;
+  top:20px;right:24px;
+  font-size:36px;color:#fff;cursor:pointer;
+}
+.lb-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,.8);
+  border:none;
+  font-size:30px;
+  padding:6px 12px;
+  border-radius:50%;
+}
+.lb-arrow.left{left:20px}
+.lb-arrow.right{right:20px}
+body.dark .lb-arrow{background:rgba(0,0,0,.7);color:#fff}
+body.dark header{
+  background: var(--accent);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  h1{font-size:26px}
+  .actions{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img id="logo" src="image/logo.png" class="site-logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="about.html">About Us</a> 
+    <button class="toggle" id="mode">🌙</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &gt;
+  <a href="index.html#products">Products</a> &gt;
+  <span>Extend Burn</span>
+</div>
+
+<section class="product">
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides">
+      <div class="slide"><img src="image/4.jpg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/4(2).jpg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/burn-back.jpeg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/burnphoto.png" onclick="openLightbox(this.src)"></div>
+    </div>
+    <button class="arrow left" onclick="prev()">‹</button>
+    <button class="arrow right" onclick="next()">›</button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <h1>Extend Burn</h1>
+  <p class="short">
+    It’s helpful because it naturally boosts metabolism, controls cravings,
+    and supports fat burning through powerful herbal ingredients.
+  </p>
+  <div class="price">Rs-2100</div>
+
+  <div class="actions">
+    <a class="btn">Buy Now</a>
+    <a class="btn outline"
+       href="https://wa.me/8595135151?text=Hello i would like to know about burn"
+       target="_blank">
+       <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+
+<!-- TABS -->
+<section class="product-tabs">
+
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="openTab(event,'benefits')">Benefits</button>
+    <button class="tab-btn" onclick="openTab(event,'ingredients')">Ingredients</button>
+    <button class="tab-btn" onclick="openTab(event,'usage')">Usage</button>
+  </div>
+
+  <!-- BENEFITS -->
+  <div id="benefits" class="tab-content active">
+    <ul class="icon-list">
+      <li>🔥 1. Supports Weight Loss & Fat Burning</li>
+      <li>⚡ 2. Enhances Metabolism</li>
+      <li>🍽️ 3. Controls Cravings & Appetite</li>
+      <li>💩 4. Improves Digestion & Gut Health</li>
+      <li>😌 5. Reduces Stress & Emotional Eating</li>
+      <li>🛡️ 6. Anti-Inflammatory & Detox Support</li>
+      <li>🔥 7. Thermogenic Effect (Heat for Fat Loss)</li>
+    </ul>
+  </div>
+
+  <!-- INGREDIENTS -->
+  <div id="ingredients" class="tab-content">
+    <table class="ingredient-table">
+      <tr><td>🍃Triphala</td><td>120 mg</td></tr>
+      <tr><td>🍏Garcinia indica (Vrikshamla)</td><td>60 mg</td></tr>
+      <tr><td>🪔Commiphora mukul (Guggul)</td><td>30 mg</td></tr>
+      <tr><td>🌰Cinnamomum Verum (Dalchini)</td><td>30 mg</td></tr>
+      <tr><td>🌶️ Zingiber Officinale (Adrak)</td><td>30 mg</td></tr>
+      <tr><td>✨ Curcuma Longa (Haldi)</td><td>30 mg</td></tr>
+      <tr><td>🧘 Withania Somnifera (Ashwagandha)</td><td>30 mg</td></tr>
+      <tr><td>🌾 Trigonella Foenum-Graecum (Methi)</td><td>30 mg</td></tr>
+      <tr><td>🌿 Aloe Vera (Ghrithkumari)</td><td>30 mg</td></tr>
+      <tr><td>🌿 Gymnema Sylvestre (Gurmar)</td><td>20 mg</td></tr>
+      <tr><td>🌿 Coleus Forskohlii (Makandi)</td><td>20 mg</td></tr>
+      <tr><td>🌶️ Capsicum Annuum (Lal Mirch)</td><td>15 mg</td></tr>
+      <tr><td>🍯 Glycyrrhiza Glabra (Mulethi)</td><td>15 mg</td></tr>
+      <tr><td>🌶️ Piper Nigrum (Kali Mirch)</td><td>15 mg</td></tr>
+    </table>
+  </div>
+
+  <!-- USAGE -->
+  <div id="usage" class="tab-content">
+    <ul class="icon-list">
+      <li>🕒 How to Take</li>
+      <li>Take 2 capsules daily after meal</li>
+      <li>Or as directed by a healthcare professional</li>
+    </ul>
+
+    <div class="warning">
+      ❌ Do not exceed recommended dosage<br>
+      🤰 Pregnant/lactating women should avoid unless advised<br>
+      🩺 If you have a medical condition, consult doctor<br>
+      🌞 Store in a cool & dry place
+    </div>
+  </div>
+
+</section>
+
+<!-- REVIEWS -->
+<h3 style="margin-top:20px;">Customer Reviews</h3>
+
+<div class="review">
+  <strong>
+    ⭐⭐⭐⭐⭐ – Rajesh.
+    <span class="verified">✔ Verified Buyer</span>
+  </strong>
+  <p>I have been using this product for one month. My digestion has improved significantly.</p>
+</div>
+
+<div class="review">
+  <strong>
+    ⭐⭐⭐⭐⭐ – Anita.
+    <span class="verified">✔ Verified Buyer</span>
+  </strong>
+  <p>Very effective and gentle on the stomach. No side effects at all.</p>
+</div>
+
+<div class="review">
+  <strong>
+    ⭐⭐⭐⭐⭐ – Mayank.
+    <span class="verified">✔ Verified Buyer</span>
+  </strong>
+  <p>Works great for boosting energy and reducing appetite.</p>
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <p>Contact us</p><br>
+
+  <div class="address">
+    <p><strong>Registered Address</strong></p>
+    <p>
+      Extend Life Nutrition<br>
+      office no. B-3 First Floor KH no. 690<br>
+      nai basti devli near Shubham Vatika<br>
+      south delhi New delhi,110080<br>
+      India
+    </p>
+  </div>
+
+  <div class="contact-details">
+    <p>
+      <i class="fas fa-phone"></i>
+      <a href="tel:+918595135151">+91 85951 35151</a>
+    </p>
+
+    <p>
+      <i class="fas fa-envelope"></i>
+      <a href="mailto:extendlifenutrition@gmail.com">
+        extendlifenutrition@gmail.com
+      </a>
+    </p>
+  </div>
+
+  <div class="social">
+    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://instagram.com/extend_life_nutrition"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/8595135151"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <button class="lb-arrow left" onclick="prevLB()">‹</button>
+  <img id="lightboxImg">
+  <button class="lb-arrow right" onclick="nextLB()">›</button>
+</div>
+
+<script>
+/* DARK MODE */
+const modeBtn=document.getElementById("mode");
+const pageBody=document.body;
+const siteLogo=document.getElementById("logo");
+pageBody.classList.remove("dark");
+modeBtn.textContent="🌙";
+siteLogo.src="image/logo.png";
+
+modeBtn.onclick=()=>{
+  pageBody.classList.toggle("dark");
+  if(pageBody.classList.contains("dark")){
+    modeBtn.textContent="🌞";
+    siteLogo.src="image/logo.png";
+  }else{
+    modeBtn.textContent="🌙";
+    siteLogo.src="image/logo.png";
+  }
+};
+
+/* TAB SWITCHING */
+function openTab(evt, tabName) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  evt.currentTarget.classList.add('active');
+}
+
+/* SLIDER */
+const slidesWrap=document.querySelector(".slides");
+const slides=document.querySelectorAll(".slide");
+const dotsWrap=document.getElementById("dots");
+let index=0,auto;
+
+slides.forEach((_,i)=>{
+  const d=document.createElement("span");
+  d.className="dot"+(i===0?" active":"");
+  d.onclick=()=>goTo(i);
+  dotsWrap.appendChild(d);
+});
+const dots=document.querySelectorAll(".dot");
+
+function update(){
+  slidesWrap.style.transform=`translateX(-${index*100}%)`;
+  dots.forEach(d=>d.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+function next(){index=(index+1)%slides.length;update()}
+function prev(){index=(index-1+slides.length)%slides.length;update()}
+function goTo(i){index=i;update()}
+auto=setInterval(next,3000);
+
+/* SWIPE */
+let startX=0,currentX=0,drag=false;
+slidesWrap.addEventListener("touchstart",e=>{
+  clearInterval(auto);
+  startX=e.touches[0].clientX;drag=true;
+});
+slidesWrap.addEventListener("touchmove",e=>{
+  if(!drag)return;
+  currentX=e.touches[0].clientX;
+  slidesWrap.style.transform=
+   `translateX(calc(-${index*100}% + ${currentX-startX}px))`;
+});
+slidesWrap.addEventListener("touchend",()=>{
+  drag=false;
+  Math.abs(currentX-startX)>60
+   ?(currentX<startX?next():prev())
+   :update();
+  auto=setInterval(next,3000);
+});
+
+/* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightboxImg");
+const imgs=[...document.querySelectorAll(".slide img")];
+let lbIndex=0;
+
+function openLightbox(src){
+  lbIndex=imgs.findIndex(i=>i.src===src);
+  lightboxImg.src=src;
+  lightbox.style.display="flex";
+  document.body.classList.add("no-scroll");
+}
+function closeLightbox(){
+  lightbox.style.display="none";
+  lightboxImg.classList.remove("zoomed");
+  document.body.classList.remove("no-scroll");
+}
+function nextLB(){lbIndex=(lbIndex+1)%imgs.length;lightboxImg.src=imgs[lbIndex].src}
+function prevLB(){lbIndex=(lbIndex-1+imgs.length)%imgs.length;lightboxImg.src=imgs[lbIndex].src}
+
+/* DOUBLE TAP ZOOM */
+let lastTap=0;
+lightboxImg.addEventListener("touchend",()=>{
+  const now=new Date().getTime();
+  if(now-lastTap<300){lightboxImg.classList.toggle("zoomed")}
+  lastTap=now;
+});
+lightboxImg.addEventListener("dblclick",()=>lightboxImg.classList.toggle("zoomed"));
+</script>
+
+</body>
+</html>

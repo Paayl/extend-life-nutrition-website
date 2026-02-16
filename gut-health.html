@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extend Gut Health</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#111;
+  --card:#f7f8f2;
+  --accent:#D6DE23;
+}
+body.dark{
+  --bg:#0b0b0b;
+  --text:#e6e6e6;
+  --card:#121212;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER */
+header{
+  background:var(--accent);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.site-logo{height:60px}
+nav{display:flex;gap:16px;align-items:center}
+nav a{text-decoration:none;color:#000;font-weight:700}
+.toggle{
+  border:2px solid #000;
+  background:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+  max-width:1000px;
+  margin:10px auto;
+  padding:0 20px;
+  font-size:14px;
+}
+.breadcrumb a{color:var(--accent);text-decoration:none}
+
+/* PRODUCT */
+.product{max-width:1000px;margin:30px auto;padding:20px}
+
+/* SLIDER */
+.slider{max-width:420px;margin:auto;overflow:hidden;position:relative}
+.slides{display:flex;transition:transform .4s ease}
+.slide{min-width:100%}
+.slide img{
+  width:100%;
+  height:320px;
+  object-fit:contain;
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  cursor:pointer;
+}
+body.dark .slide img{box-shadow:0 0 25px rgba(255,255,255,.35)}
+
+.arrow{
+  position:absolute;top:50%;
+  transform:translateY(-50%);
+  background:var(--accent);
+  border:none;
+  padding:6px 10px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.arrow.left{left:-12px}
+.arrow.right{right:-12px}
+
+/* DOTS */
+.dots{text-align:center;margin:12px 0}
+.dot{
+  height:10px;width:10px;
+  background:#bbb;border-radius:50%;
+  display:inline-block;margin:0 5px;cursor:pointer;
+}
+.dot.active{background:var(--accent)}
+
+/* INFO */
+h1{margin-top:20px;font-size:34px}
+.short{margin:8px 0;font-size:18px}
+.price{color:var(--accent);font-size:22px;font-weight:700}
+
+.actions{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+.btn{
+  padding:10px 20px;
+  background:var(--accent);
+  color:#000;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.outline{
+  background:none;
+  border:2px solid var(--accent);
+  color:var(--accent);
+}
+
+/* TABS */
+.product-tabs{
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+  margin-top:30px;
+}
+.tab-buttons{
+  display:flex;
+  border-bottom:2px solid var(--accent);
+}
+.tab-btn{
+  flex:1;
+  padding:12px;
+  background:none;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+.tab-btn.active{
+  color:var(--accent);
+  border-bottom:4px solid var(--accent);
+}
+.tab-content{display:none;padding-top:15px}
+.tab-content.active{display:block}
+
+.icon-list{list-style:none}
+.icon-list li{margin-bottom:10px;font-size:16px}
+
+/* REVIEWS */
+.review{margin-top:16px}
+.verified{
+  font-size:12px;
+  margin-left:6px;
+  padding:2px 8px;
+  background:#e6f6ec;
+  color:#0a7d32;
+  border-radius:12px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--accent);
+  color:#000;
+  padding:30px 20px;
+  text-align:center;
+}
+.address{
+  margin:20px auto;
+  max-width:420px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.address strong{
+  font-size:16px;
+}
+
+.contact-details{
+  margin:14px auto 22px;
+  text-align:center;
+  font-size:15px;
+}
+
+.contact-details p{
+  margin:6px 0;
+}
+
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.contact-details i{
+  margin-right:8px;
+}
+.social{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.social a{
+  background:#000;
+  color:var(--accent);
+  padding:10px 16px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* LIGHTBOX */
+body.no-scroll{overflow:hidden}
+.lightbox{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+.lightbox .close{
+  position:absolute;
+  top:20px;right:24px;
+  font-size:36px;color:#fff;cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img id="logo" src="image/logo.png" class="site-logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="about.html">About Us</a>
+    <button class="toggle" id="mode">🌙</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> › <a href="index.html#products">Products</a> › <span>Extend Gut Health</span>
+</div>
+
+<section class="product">
+
+<div class="slider">
+  <div class="slides">
+    <div class="slide"><img src="image/3.jpg" onclick="openLightbox(this.src)"></div>
+    <div class="slide"><img src="image/3(2).jpg" onclick="openLightbox(this.src)"></div>
+    <div class="slide"><img src="image/gut health back.jpeg" onclick="openLightbox(this.src)"></div>
+    <div class="slide"><img src="image/gut.png" onclick="openLightbox(this.src)"></div>
+  </div>
+  <button class="arrow left" onclick="prev()">‹</button>
+  <button class="arrow right" onclick="next()">›</button>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<h1>Extend Gut Health</h1>
+<p class="short">Supports digestion, immunity & gut balance</p>
+<div class="price">Rs 1500</div>
+
+<div class="actions">
+  <a class="btn"href="https://wa.me/918595135151?text=Hello i would like to order gut health">Buy Now</a>
+  <a class="btn outline"
+     href="https://wa.me/918595135151?text=Hello i would like to know about gut health"
+     target="_blank">
+     <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+</div>
+
+<div class="product-tabs">
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="openTab(event,'benefits')">Benefits</button>
+    <button class="tab-btn" onclick="openTab(event,'ingredients')">Ingredients</button>
+    <button class="tab-btn" onclick="openTab(event,'usage')">Usage</button>
+  </div>
+
+  <div class="tab-content active" id="benefits">
+    <ul class="icon-list">
+      <li>🦠 Improves digestion & gut balance</li>
+      <li>🛡️ Strengthens immunity</li>
+      <li>💨 Reduces gas & bloating</li>
+      <li>🍽️ Improves nutrient absorption</li>
+    </ul>
+  </div>
+
+  <div class="tab-content" id="ingredients">
+    <ul>
+      <li>Lactobacillus Acidophilus</li>
+      <li>Bifidobacterium Lactis</li>
+      <li>Organic Inulin (Chicory)</li>
+    </ul>
+  </div>
+
+  <div class="tab-content" id="usage">
+    <ul class="icon-list">
+      <li>💊 Take 2 capsules daily after meals</li>
+      <li>👨‍⚕️ Or as directed by doctor</li>
+      <li>🚫 Not for medicinal use</li>
+    </ul>
+  </div>
+</div>
+
+<h3 style="margin-top:30px">Customer Reviews</h3>
+
+<div class="review">
+  ⭐⭐⭐⭐⭐ – Suresh <span class="verified">✔ Verified Buyer</span>
+  <p>Digestion improved within weeks.</p>
+</div>
+
+<div class="review">
+  ⭐⭐⭐⭐⭐ – Ankit <span class="verified">✔ Verified Buyer</span>
+  <p>No side effects, very effective.</p>
+</div>
+
+</section>
+
+<footer id="contact">
+  <p>Contact us</p><br>
+    <div class="address">
+  <p><strong>Registered Address</strong></p>
+  <p>
+    Extend Life Nutrition<br>
+    <!-- Replace with real address -->
+    office no. B-3 First Floor KH no. 690 <br>
+    nai basti devli near Shubham Vatika<br>
+    south delhi New delhi,110080<br>
+    India
+  </p>
+</div>
+<div class="contact-details">
+  <p>
+    <i class="fas fa-phone"></i>
+    <a href="tel:+918595135151">+91 85951 35151</a>
+  </p>
+
+  <p>
+    <i class="fas fa-envelope"></i>
+    <a href="mailto:info@extendlifenutrition.com">
+      extendlifenutrition@gmail.com
+    </a>
+  </p>
+</div>
+  <div class="social">
+    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://instagram.com/extend_life_nutrition"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/918595135151"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg">
+</div>
+
+<script>
+/* TABS */
+function openTab(evt,id){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  evt.target.classList.add("active");
+}
+
+/* DARK MODE */
+const modeBtn=document.getElementById("mode");
+const body=document.body;
+const logo=document.getElementById("logo");
+modeBtn.onclick=()=>{
+  body.classList.toggle("dark");
+  logo.src=body.classList.contains("dark")?"image/dark-logo.png":"image/logo.png";
+};
+
+/* SLIDER */
+const slides=document.querySelector(".slides");
+const slide=document.querySelectorAll(".slide");
+const dots=document.getElementById("dots");
+let i=0;
+slide.forEach((_,n)=>{
+  let d=document.createElement("span");
+  d.className="dot"+(n===0?" active":"");
+  d.onclick=()=>{i=n;update()};
+  dots.appendChild(d);
+});
+const dot=document.querySelectorAll(".dot");
+function update(){
+  slides.style.transform=`translateX(-${i*100}%)`;
+  dot.forEach(d=>d.classList.remove("active"));
+  dot[i].classList.add("active");
+}
+function next(){i=(i+1)%slide.length;update()}
+function prev(){i=(i-1+slide.length)%slide.length;update()}
+setInterval(next,3000);
+
+/* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightboxImg");
+function openLightbox(src){
+  lightboxImg.src=src;
+  lightbox.style.display="flex";
+  body.classList.add("no-scroll");
+}
+function closeLightbox(){
+  lightbox.style.display="none";
+  body.classList.remove("no-scroll");
+}
+</script>
+
+</body>
+</html>

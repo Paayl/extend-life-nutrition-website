@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Extend Life Nutrition</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===================== COLOR SYSTEM ===================== */
+:root{
+  --bg:#ffffff;
+  --text:#111111;
+  --header:#D6DE23;
+  --accent:#D6DE23;
+  --section:#f8f8f8;
+}
+
+body.dark{
+  --bg:#000000;
+  --text:#ffffff;
+  --section:#111111;
+}
+
+/* ===================== BASE ===================== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:var(--bg);color:var(--text);transition:0.3s;}
+
+/* ===================== HEADER ===================== */
+header{
+  background:var(--header);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.site-logo{height:70px;}
+nav{display:flex;align-items:center;gap:18px;}
+nav a{text-decoration:none;color:#000;font-size:1.1rem;font-weight:600;}
+nav a:hover{opacity:0.7;}
+
+.toggle{
+  border:2px solid #000;
+  background:none;
+  padding:6px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* ===================== IMAGE GLOW ===================== */
+.glow-img{
+  width:100%;
+  border-radius:14px;
+  transition:0.3s;
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.25),
+    0 0 25px rgba(214,222,35,0.45);
+}
+
+body.dark .glow-img{
+  box-shadow:
+    0 6px 25px rgba(255,255,255,0.35),
+    0 0 32px rgba(255,255,255,0.65);
+}
+
+/* ===================== SECTION STYLE ===================== */
+section{
+  padding:60px 20px;
+  background:var(--section);
+}
+.container{
+  max-width:1250px;
+  margin:auto;
+}
+.flex{
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ===================== FOOTER ===================== */
+footer{
+  background:#D6DE23;
+  color:#111;
+  padding:40px 20px;
+  text-align:center;
+}
+.address, .contact-details{margin:20px auto;max-width:420px;}
+.social a{
+  margin:0 10px;
+  color:#000;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:768px){
+  h2{font-size:2rem;}
+  h3{font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <img id="siteLogo" src="image/logo.png" class="site-logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#products">Products</a>
+    <a href="about.html">About Us</a>
+    <a href="#contact">Contact</a>
+    <button id="mode" class="toggle">🌞</button>
+  </nav>
+</header>
+
+<!-- ===================== ABOUT US ===================== -->
+<section id="about-us">
+  <div class="container">
+
+    <h2 style="text-align:center; font-size:2.6rem; font-weight:700; margin-bottom:20px;">
+      About Us
+    </h2>
+
+    <p style="text-align:center; max-width:900px; margin:auto; font-size:1.15rem; margin-bottom:40px;">
+      We are experts in creating high-quality health supplements backed by years of experience.
+      <br><br>
+      Our core values — <strong>Quality, Faith, Result & Purity</strong>.  
+      <br><br>
+      <strong>We believe in providing the best for our customers.</strong>
+    </p>
+
+    <div class="flex">
+
+      <div style="flex:1; min-width:300px; max-width:400px;">
+        <img src="image/ad.png" class="glow-img">
+      </div>
+
+      <div style="flex:1; min-width:300px; font-size:1.15rem; line-height:1.8;">
+        <h3>Our Expertise</h3>
+        <p>We create natural supplements with real, science-backed benefits.</p>
+
+        <h3 style="margin-top:20px;">Our Core Values</h3>
+        <ul style="list-style:none; padding:0;">
+          <li>✔ Quality — Premium & clean</li>
+          <li>✔ Faith — Honest & Transparent</li>
+          <li>✔ Results — Visible Outcomes</li>
+          <li>✔ Purity — No harmful chemicals</li>
+          <li>✔ Care — Customer-first mindset</li>
+        </ul>
+
+        <h3 style="margin-top:20px;">Our Aim</h3>
+        <p><strong>To provide premium wellness at affordable prices.</strong></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOUNDER SECTION (same style) ===================== -->
+<section>
+  <div class="container">
+
+    <h2 style="text-align:center; font-size:2.4rem; font-weight:700; margin-bottom:20px;">
+      Our Founder
+    </h2>
+
+    <p style="text-align:center; max-width:900px; margin:auto; font-size:1.15rem; margin-bottom:40px;">
+      The vision, passion, and dedication behind our brand — bringing pure and affordable wellness to all.
+    </p>
+
+    <div style="
+      max-width:900px;
+      margin:auto;
+      font-size:1.15rem;
+      line-height:1.9;
+      text-align:center;
+    ">
+
+      <h3 style="font-size:1.8rem; margin-bottom:15px;">
+        Mr Sanjay kumar
+      </h3>
+
+      <p>
+        Our brand was built with one clear mission — to deliver high-quality, natural supplements that are both effective and affordable.
+      </p>
+
+      <p>
+        Guided by the principles of <strong>Quality, Faith, Result & Purity</strong>, we focus on long-term health rather than short-term claims.
+      </p>
+
+      <p>
+        The philosophy of <strong>“Backed by Nature, Built for Results.”</strong> drives every decision — from sourcing ingredients to final delivery.
+      </p>
+
+      <p style="font-weight:600; margin-top:20px;">
+        “Good health should be simple, natural, and accessible to all.”
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact">
+
+  <p style="font-size:1.3rem; font-weight:700;">Contact Us</p>
+
+  <div class="address">
+    <p><strong>Registered Address</strong></p>
+    Extend Life Nutrition<br>
+    office no. B-3 First Floor KH no. 690<br>
+    nai basti devli near Shubham Vatika<br>
+    South Delhi, New Delhi – 110080<br>
+    India
+  </div>
+
+  <div class="contact-details">
+    <p><i class="fas fa-phone"></i> <a href="tel:+918595135151">+91 85951 35151</a></p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:extendlifenutrition@gmail.com">extendlifenutrition@gmail.com</a></p>
+  </div>
+
+  <div class="social">
+    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://instagram.com/extend_life_nutrition"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/8595135151"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <p>© 2025 Extend Life Nutrition. All Rights Reserved.</p>
+</footer>
+
+<!-- ===================== DARK MODE SCRIPT ===================== -->
+<script>
+const btn = document.getElementById("mode");
+const body = document.body;
+
+btn.onclick = () => {
+  body.classList.toggle("dark");
+  btn.textContent = body.classList.contains("dark") ? "🌙" : "🌞";
+};
+</script>
+
+</body>
+</html>

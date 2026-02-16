@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extend Gut Health</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#111;
+  --card:#f7f8f2;
+  --accent:#D6DE23; /* bottle cap */
+}
+body.dark{
+  --bg:#0b0b0b;
+  --text:#e6e6e6;
+  --card:#121212;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER */
+/* HEADER – SAME AS HOME WEBSITE */
+header{
+  background: var(--accent);
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* Header text/icons contrast */
+header nav a{
+  color:#000;
+  font-weight:700;
+}
+.toggle{
+  border:2px solid #000;
+  color:#000;
+}
+
+.site-logo{height:64px}
+nav{display:flex;gap:16px;align-items:center}
+nav a{text-decoration:none;color:var(--text);font-weight:600}
+.toggle{
+  border:2px solid var(--bg);
+  background:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+  max-width:1000px;
+  margin:10px auto;
+  padding:0 20px;
+  font-size:14px;
+  color:#777;
+}
+.breadcrumb a{color:var(--accent);text-decoration:none}
+body.dark .breadcrumb{color:#aaa}
+
+/* PRODUCT */
+.product{
+  max-width:1000px;
+  margin:30px auto;
+  padding:20px;
+}
+
+/* SLIDER */
+.slider{
+  overflow:hidden;
+  max-width:420px;
+  margin:auto;
+  position:relative;
+  touch-action:pan-y;
+}
+.slides{
+  display:flex;
+  transition:transform .45s cubic-bezier(.25,.8,.25,1);
+}
+.slide{min-width:100%}
+.slide img{
+  width:100%;
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  cursor:pointer;
+}
+body.dark .slide img{
+  box-shadow:0 0 25px rgba(255,255,255,.35);
+}
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:var(--accent);
+  border:none;
+  padding:6px 10px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.arrow.left{left:-14px}
+.arrow.right{right:-14px}
+
+/* DOTS */
+.dots{text-align:center;margin-top:12px}
+.dot{
+  height:10px;width:10px;margin:0 5px;
+  background:#bbb;border-radius:50%;
+  display:inline-block;cursor:pointer;
+}
+.dot.active{background:var(--accent)}
+body.dark .dot{background:#555}
+
+/* INFO */
+h1{margin-top:24px;font-size:34px}
+.short{margin:8px 0;font-size:18px}
+.price{color:var(--accent);font-size:22px;font-weight:700}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin:20px 0;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 20px;
+  background:var(--accent);
+  color:#000;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.outline{
+  background:none;
+  border:2px solid var(--accent);
+  color:var(--accent);
+}
+
+/* ABOUT & REVIEWS */
+.about{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  margin-top:20px;
+}
+.review{margin-top:14px}
+.verified{
+  margin-left:6px;
+  font-size:12px;
+  padding:2px 8px;
+  background:#e6f6ec;
+  color:#0a7d32;
+  border-radius:12px;
+}
+body.dark .verified{
+  background:rgba(0,255,120,.15);
+  color:#6dff9c;
+}
+
+/* FOOTER – BOTTLE CAP */
+footer{
+  background:var(--accent);
+  color:#000;
+  padding:40px 20px;
+  text-align:center;
+}
+.address{
+  margin:20px auto;
+  max-width:420px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.address strong{
+  font-size:16px;
+}
+
+.contact-details{
+  margin:14px auto 22px;
+  text-align:center;
+  font-size:15px;
+}
+
+.contact-details p{
+  margin:6px 0;
+}
+
+.contact-details a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.contact-details i{
+  margin-right:8px;
+}
+.social{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.social a{
+  background:#000;
+  color:var(--accent);
+  padding:10px 16px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* LIGHTBOX */
+body.no-scroll{overflow:hidden}
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  transition:.35s;
+  transform:scale(1);
+}
+.lightbox img.zoomed{transform:scale(2)}
+.lightbox .close{
+  position:absolute;
+  top:20px;right:24px;
+  font-size:36px;color:#fff;cursor:pointer;
+}
+.lb-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,.8);
+  border:none;
+  font-size:30px;
+  padding:6px 12px;
+  border-radius:50%;
+}
+.lb-arrow.left{left:20px}
+.lb-arrow.right{right:20px}
+body.dark .lb-arrow{background:rgba(0,0,0,.7);color:#fff}
+body.dark header{
+  background: var(--accent);
+}
+
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  h1{font-size:26px}
+  .actions{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img id="logo" src="image/logo.png" class="site-logo">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="about.html">About Us</a>
+    <button class="toggle" id="mode">🌙</button>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &gt;
+  <a href="index.html#products">Products</a> &gt;
+  <span>Extend Testo</span>
+</div>
+
+<section class="product">
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides">
+      <div class="slide"><img src="image/2.jpg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/2(2).jpg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/testogold-back.jpeg" onclick="openLightbox(this.src)"></div>
+      <div class="slide"><img src="image/testo.png" onclick="openLightbox(this.src)"></div>
+      
+    </div>
+    <button class="arrow left" onclick="prev()">‹</button>
+    <button class="arrow right" onclick="next()">›</button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <h1>Extend Testo Gold</h1>
+  <p class="short">Supports Male vitality, strength, fertility, stamina, and overall wellness</p>
+  <div class="price">Rs 2200</div>
+
+  <div class="actions">
+    <a class="btn" href="https://wa.me/918595135151?text=Hello i would like to order testo-gold">Buy Now</a>
+    <a class="btn outline"
+       href="https://wa.me/918595135151?text=Hello i would like to know about testo-gold"
+       target="_blank">
+       <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+  <div class="about">
+
+  <h3>🌿 About This Product</h3>
+  <p>
+    This advanced Ayurvedic formulation is designed to support
+    <strong>male vitality, strength, fertility, stamina, and overall wellness</strong>.
+    It combines time-tested herbs used in Vajikarana (sexual wellness) and
+    Rasayana (rejuvenation) therapies.
+  </p>
+
+  <h3>🔹Key Ingredients & Benefits</h3>
+
+  <h4>1️⃣ Shilajit (Fulvic Acid Rich)</h4>
+  <ul>
+    <li>Boosts testosterone levels naturally</li>
+    <li>Improves muscle strength, stamina & energy</li>
+    <li>Enhances sperm count, motility & fertility</li>
+    <li>Supports sexual health & libido</li>
+    <li>Improves mental clarity and reduces fatigue</li>
+  </ul>
+
+  <h4>2️⃣ Swarna Bhasma (Ayurvedic Gold Ash)</h4>
+  <ul>
+    <li>Acts as a powerful Rasayana (rejuvenator)</li>
+    <li>Boosts vitality, stamina & physical strength</li>
+    <li>Supports male hormones & reproductive health</li>
+    <li>Improves memory, focus & nervous system health</li>
+    <li>Strengthens immunity & heart circulation</li>
+  </ul>
+
+  <h4>3️⃣ Ashwagandha</h4>
+  <ul>
+    <li>Reduces stress, anxiety & cortisol levels</li>
+    <li>Boosts energy, stamina & endurance</li>
+    <li>Supports testosterone & sperm quality</li>
+    <li>Improves muscle recovery & strength</li>
+    <li>Promotes better sleep & mental balance</li>
+  </ul>
+
+  <h4>4️⃣ Shatavari</h4>
+  <ul>
+    <li>Supports male reproductive health</li>
+    <li>Balances testosterone & improves sperm quality</li>
+    <li>Acts as a natural aphrodisiac</li>
+    <li>Supports digestion & gut health</li>
+    <li>Boosts immunity and anti-aging vitality</li>
+  </ul>
+
+  <h4>5️⃣ Moringa (Miracle Tree)</h4>
+  <ul>
+    <li>Rich in vitamins, minerals & antioxidants</li>
+    <li>Boosts energy & immunity</li>
+    <li>Supports heart health & circulation</li>
+    <li>Improves brain function, focus & mood</li>
+    <li>Supports sexual health & fertility</li>
+  </ul>
+
+  <h4>6️⃣ Kaunch Beej (Mucuna pruriens)</h4>
+  <ul>
+    <li>Rich in L-DOPA for mood & motivation</li>
+    <li>Boosts testosterone & libido</li>
+    <li>Improves sperm quality & fertility</li>
+    <li>Supports muscle growth & recovery</li>
+    <li>Acts as an anti-aging rejuvenator</li>
+  </ul>
+
+  <h4>7️⃣ Gokhru (Gokshura)</h4>
+  <ul>
+    <li>Supports natural testosterone production</li>
+    <li>Improves sexual performance & stamina</li>
+    <li>Supports kidney & urinary health</li>
+    <li>Boosts energy & muscle recovery</li>
+    <li>Reduces stress & inflammation</li>
+  </ul>
+
+  <h4>8️⃣ Safed Musli</h4>
+  <ul>
+    <li>Enhances sexual desire & stamina</li>
+    <li>Improves fertility & sperm quality</li>
+    <li>Boosts testosterone & muscle strength</li>
+    <li>Restores energy after weakness or illness</li>
+    <li>Acts as a powerful anti-aging Rasayana</li>
+  </ul>
+
+  <h3>✅ Overall Benefits</h3>
+  <ul>
+    <li>Boosts testosterone naturally</li>
+    <li>Improves sexual health & fertility</li>
+    <li>Enhances stamina, strength & endurance</li>
+    <li>Supports muscle growth & recovery</li>
+    <li>Improves mental clarity & stress control</li>
+    <li>Strengthens immunity & overall vitality</li>
+  </ul>
+
+  <p style="font-size:14px;color:#777;margin-top:14px;">
+    <strong>⚠️Disclaimer:</strong> This product is based on Ayurvedic principles.
+    Results may vary from person to person. Not intended to diagnose, treat,
+    cure, or prevent any disease.
+  </p>
+
+</div>
+
+ <!-- REVIEWS -->
+    <h3 style="margin-top:20px;">Customer Reviews</h3>
+
+    <div class="review">
+      <strong>
+        ⭐⭐⭐⭐⭐ – Ramesh K.
+        <span class="verified">✔ Verified Buyer</span>
+      </strong>
+      <p>
+        I have been using this product for one month.
+        My digestion has improved significantly.
+      </p>
+    </div>
+
+    <div class="review">
+      <strong>
+        ⭐⭐⭐⭐⭐ – Priya S.
+        <span class="verified">✔ Verified Buyer</span>
+      </strong>
+      <p>
+        Very effective and gentle on the stomach.
+        No side effects at all.
+      </p>
+    </div>
+
+    <div class="review">
+      <strong>
+        ⭐⭐⭐⭐⭐ – Ankit M.
+        <span class="verified">✔ Verified Buyer</span>
+      </strong>
+
+<footer id="contact">
+  <p>Contact us</p><br>
+    <div class="address">
+  <p><strong>Registered Address</strong></p>
+  <p>
+    Extend Life Nutrition<br>
+    <!-- Replace with real address -->
+    office no. B-3 First Floor KH no. 690 <br>
+    nai basti devli near Shubham Vatika<br>
+    south delhi New delhi,110080<br>
+    India
+  </p>
+</div>
+<div class="contact-details">
+  <p>
+    <i class="fas fa-phone"></i>
+    <a href="tel:+918595135151">+91 85951 35151</a>
+  </p>
+
+  <p>
+    <i class="fas fa-envelope"></i>
+    <a href="mailto:info@extendlifenutrition.com">
+      extendlifenutrition@gmail.com
+    </a>
+  </p>
+</div>
+  <div class="social">
+    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://instagram.com/extend_life_nutrition"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/8595135151"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <button class="lb-arrow left" onclick="prevLB()">‹</button>
+  <img id="lightboxImg">
+  <button class="lb-arrow right" onclick="nextLB()">›</button>
+</div>
+
+<script>
+/* DARK MODE */
+const modeBtn=document.getElementById("mode");
+const pageBody=document.body;
+const siteLogo=document.getElementById("logo");
+pageBody.classList.remove("dark");
+modeBtn.textContent="🌙";
+siteLogo.src="image/logo.png";
+
+modeBtn.onclick=()=>{
+  pageBody.classList.toggle("dark");
+  if(pageBody.classList.contains("dark")){
+    modeBtn.textContent="🌞";
+    siteLogo.src="image/logo.png";
+  }else{
+    modeBtn.textContent="🌙";
+    siteLogo.src="image/logo.png";
+  }
+};
+
+/* SLIDER */
+const slidesWrap=document.querySelector(".slides");
+const slides=document.querySelectorAll(".slide");
+const dotsWrap=document.getElementById("dots");
+let index=0,auto;
+
+slides.forEach((_,i)=>{
+  const d=document.createElement("span");
+  d.className="dot"+(i===0?" active":"");
+  d.onclick=()=>goTo(i);
+  dotsWrap.appendChild(d);
+});
+const dots=document.querySelectorAll(".dot");
+
+function update(){
+  slidesWrap.style.transform=`translateX(-${index*100}%)`;
+  dots.forEach(d=>d.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+function next(){index=(index+1)%slides.length;update()}
+function prev(){index=(index-1+slides.length)%slides.length;update()}
+function goTo(i){index=i;update()}
+auto=setInterval(next,3000);
+
+/* SWIPE */
+let startX=0,currentX=0,drag=false;
+slidesWrap.addEventListener("touchstart",e=>{
+  clearInterval(auto);
+  startX=e.touches[0].clientX;drag=true;
+});
+slidesWrap.addEventListener("touchmove",e=>{
+  if(!drag)return;
+  currentX=e.touches[0].clientX;
+  slidesWrap.style.transform=
+   `translateX(calc(-${index*100}% + ${currentX-startX}px))`;
+});
+slidesWrap.addEventListener("touchend",()=>{
+  drag=false;
+  Math.abs(currentX-startX)>60
+   ?(currentX<startX?next():prev())
+   :update();
+  auto=setInterval(next,3000);
+});
+
+/* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightboxImg");
+const imgs=[...document.querySelectorAll(".slide img")];
+let lbIndex=0;
+
+function openLightbox(src){
+  lbIndex=imgs.findIndex(i=>i.src===src);
+  lightboxImg.src=src;
+  lightbox.style.display="flex";
+  document.body.classList.add("no-scroll");
+}
+function closeLightbox(){
+  lightbox.style.display="none";
+  lightboxImg.classList.remove("zoomed");
+  document.body.classList.remove("no-scroll");
+}
+function nextLB(){lbIndex=(lbIndex+1)%imgs.length;lightboxImg.src=imgs[lbIndex].src}
+function prevLB(){lbIndex=(lbIndex-1+imgs.length)%imgs.length;lightboxImg.src=imgs[lbIndex].src}
+
+/* DOUBLE TAP ZOOM */
+let lastTap=0;
+lightboxImg.addEventListener("touchend",()=>{
+  const now=new Date().getTime();
+  if(now-lastTap<300){lightboxImg.classList.toggle("zoomed")}
+  lastTap=now;
+});
+lightboxImg.addEventListener("dblclick",()=>lightboxImg.classList.toggle("zoomed"));
+</script>
+
+</body>
+</html>
